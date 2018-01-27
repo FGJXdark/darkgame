@@ -12,17 +12,17 @@ public class Spawner : MonoBehaviour {
             return m_instance;
         }
     }
-    public void Spawn(GameObject toSpawn, Vector2 position){
+    public void Spawn(GameObject toSpawn, Vector3 position){
         Instantiate(toSpawn, position, Quaternion.identity);
     }
-    public void Spawn(GameObject toSpawn, Vector2 position, Transform parent){
+    public void Spawn(GameObject toSpawn, Vector3 position, Transform parent){
         Instantiate(toSpawn, position, Quaternion.identity, parent);
     }
-    public GameObject SpawnGO(GameObject toSpawn, Vector2 position){
+    public GameObject SpawnGO(GameObject toSpawn, Vector3 position){
         GameObject GO = Instantiate(toSpawn, position, Quaternion.identity);
         return GO;
     }
-    public GameObject SpawnGO(GameObject toSpawn, Vector2 position, Transform parent){
+    public GameObject SpawnGO(GameObject toSpawn, Vector3 position, Transform parent){
         GameObject GO = Instantiate(toSpawn, position, Quaternion.identity, parent);
         return GO;
     }

@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
     public float lightWaitTime = 5f;
 
     public Transform enemySpawnPosition;
+    public GameObject enemy;
 
     void Start () {
         spawner = GetComponent<Spawner>();
@@ -61,6 +62,8 @@ public class GameController : MonoBehaviour {
         currentLightState = state;
     }
 
-
+    public void SpawnEnemy(){
+        spawner.Spawn(enemy, enemySpawnPosition.position);
+    }
 
 }
