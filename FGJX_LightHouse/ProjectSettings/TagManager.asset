@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SavePoint
   - Land
+  - Fire
+  - Tree
   layers:
   - Default
   - TransparentFX

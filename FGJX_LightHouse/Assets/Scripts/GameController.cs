@@ -15,9 +15,20 @@ public class GameController : MonoBehaviour {
     public Spawner spawner;
     GameData gameData;
 
+    public List<LightController> lightHouseLights = new List<LightController>();
+    public List<LightCubeController> lightHouseEmitters = new List<LightCubeController>();
+    bool currentLightState = true;
+    public float lightWaitTime = 5f;
+
     void Start () {
         spawner = GetComponent<Spawner>();
+        StartCoroutine(ToggleLights());
     }
+
+
+
+
+
     void Update () {
 
     }
@@ -30,7 +41,23 @@ public class GameController : MonoBehaviour {
 
     }
 
+    IEnumerator ToggleLights(){
+        WaitForSeconds waitTime = new WaitForSeconds(lightWaitTime);
+        while(true){
+            yield return waitTime;
+            TurnLights(!currentLightState);
+        }
+    }
+    void TurnLights(bool state){
+        foreach(LightController lc in lightHouseLights){
+            lc.SwitchLight(state);
+        }
+        foreach(LightCubeController lcc in lightHouseEmitters){
+            lcc.SwitchLight(state);
+        }
 
+        currentLightState = state;
+    }
 
 
 
