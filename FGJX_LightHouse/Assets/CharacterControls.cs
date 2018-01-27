@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CharacterControls : MonoBehaviour {
 	public GameObject cam;
+	public CurveMover curveMover;
 	Rigidbody rigidBody;
 
 	public float speed = 10.0f;
@@ -21,6 +22,7 @@ public class CharacterControls : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		MoveCamera();
 		if (grounded) {
 			Move(GetVelocity());
 
@@ -56,6 +58,10 @@ public class CharacterControls : MonoBehaviour {
 		direction.y = 0;
 
 		return direction;
+	}
+
+	void MoveCamera(){
+		//if(Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) curveMover.OnTrigger();
 	}
 
 	void CalculateGravity(){

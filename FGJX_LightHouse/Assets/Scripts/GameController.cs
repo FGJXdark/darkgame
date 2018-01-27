@@ -17,8 +17,10 @@ public class GameController : MonoBehaviour {
 
     public List<LightController> lightHouseLights = new List<LightController>();
     public List<LightCubeController> lightHouseEmitters = new List<LightCubeController>();
-    bool currentLightState = true;
+    public bool currentLightState = true;
     public float lightWaitTime = 5f;
+
+    public Transform enemySpawnPosition;
 
     void Start () {
         spawner = GetComponent<Spawner>();

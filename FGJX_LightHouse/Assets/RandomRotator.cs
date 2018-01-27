@@ -10,7 +10,7 @@ public class RandomRotator : MonoBehaviour {
 	}
 	
 	void RotateRandom(){
-		transform.Rotate(new Vector3(0, Random.Range(0, 360), 0));
+		transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
 	}
 	
 }
