@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightCubeController : MonoBehaviour {
 	Renderer renderer;
 	Material lightMat;
-	float duration = 3;
+	public float duration = 3;
 
 	public Color onColor = Color.white;
     public Color offColor = Color.black;
