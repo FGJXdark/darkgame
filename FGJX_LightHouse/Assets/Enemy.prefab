@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33055035457534528}
   - component: {fileID: 23534221436495486}
   - component: {fileID: 114191261622277144}
+  - component: {fileID: 65846868472813040}
+  - component: {fileID: 114426139595500574}
   m_Layer: 0
   m_Name: pikkuMonsu
   m_TagString: Untagged
@@ -55,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927984258764412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.1, y: 4.7, z: 2.78}
+  m_LocalPosition: {x: 95.25394, y: 44.85005, z: -52.19862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4985499142869370}
@@ -123,6 +125,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927984258764412}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65846868472813040
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758699981797774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.008263848, y: 0.0043757274, z: 0.0048990264}
+  m_Center: {x: 0.000105282066, y: -0.00013977975, z: -0.0004783413}
 --- !u!114 &114191261622277144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +154,17 @@ MonoBehaviour:
   currentIntensity: 10
   onNum: 10
   offNum: 0
+--- !u!114 &114426139595500574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758699981797774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed3ec6811985de44b88676b0c3b70d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114429777191470186
 MonoBehaviour:
   m_ObjectHideFlags: 1

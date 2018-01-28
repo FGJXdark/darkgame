@@ -32,7 +32,7 @@ public class LightCubeController : MonoBehaviour {
 
 	void EaseLight(Color endColor, float endEmission){
     	float startTime = Time.time;
-		StartCoroutine(UpdateStat(startTime, lightMat.GetColor("_EmissionColor"), endColor, currentIntensity, endEmission));
+		if(gameObject.activeSelf)StartCoroutine(UpdateStat(startTime, lightMat.GetColor("_EmissionColor"), endColor, currentIntensity, endEmission));
 	}
 	IEnumerator UpdateStat(float startTime, Color startValue, Color endValue, float intensityStart, float intensityEnd){
 		while(true){
