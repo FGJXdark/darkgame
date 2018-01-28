@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     private static GameController m_instance;
@@ -12,6 +13,8 @@ public class GameController : MonoBehaviour {
             return m_instance;
         }
     }
+
+    
     public Spawner spawner;
     GameData gameData;
 
@@ -20,8 +23,17 @@ public class GameController : MonoBehaviour {
     public bool currentLightState = true;
     public float lightWaitTime = 5f;
 
-    public Transform enemySpawnPosition;
+    public Transform[] enemySpawnPositions;
     public GameObject enemy;
+
+    public GameObject[] Modes = new GameObject[2];
+    int current = 0;
+
+    public Fade fader;
+    bool switchLights = true; 
+    public GameObject lightToTurnOFF;
+
+    int enemyCounter = 0;
 
     void Start () {
         spawner = GetComponent<Spawner>();
@@ -29,24 +41,13 @@ public class GameController : MonoBehaviour {
     }
 
 
-
-
-
     void Update () {
-
-    }
-
-
-    void Save(){
-
-    }
-    void Load(){
 
     }
 
     IEnumerator ToggleLights(){
         WaitForSeconds waitTime = new WaitForSeconds(lightWaitTime);
-        while(true){
+        while(switchLights){
             yield return waitTime;
             TurnLights(!currentLightState);
         }
@@ -63,7 +64,54 @@ public class GameController : MonoBehaviour {
     }
 
     public void SpawnEnemy(){
-        spawner.Spawn(enemy, enemySpawnPosition.position);
+        spawner.Spawn(enemy, enemySpawnPositions[enemyCounter].position);
+        enemyCounter++;
+    }
+
+    public void StartChangeMode(){
+        StartCoroutine(ChangeTimer());
+    }
+    IEnumerator ChangeTimer(){
+        fader.FadeIn();
+        yield return new WaitForSeconds(2);
+        switchLights = false;
+        lightToTurnOFF.SetActive(false);
+        ChangeMode();
+        fader.FadeOut();
+    
+    }
+    void ChangeMode(){
+        Modes [current].SetActive (false);
+
+        if (current + 1 < Modes.Length) {
+            current += 1;
+            Modes [current].SetActive (true);
+            StartEnd();
+
+        } else {
+            current = 0;
+            Modes [current].SetActive (true);
+        }
+    }
+    IEnumerator StartEnd(){
+        yield return new WaitForSeconds(7f);
+        fader.FadeIn();
+        yield return new WaitForSeconds(1f);
+        EndGame();
+    }
+    void EndGame(){
+        //SceneManager.LoadScene("Menu");
+
+    }
+
+    public void PlayerDead(){
+        StartCoroutine(DoPlayerDead());
+    }
+
+    IEnumerator DoPlayerDead(){
+        fader.FadeIn();
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("Game");
     }
 
 }
