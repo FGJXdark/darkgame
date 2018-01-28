@@ -13,9 +13,11 @@ public class CharacterControls : MonoBehaviour {
 	public float jumpHeight = 2.0f;
 	private bool grounded = false;
 
+	AudioSource steps;
 	void Awake () {
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
 		rigidBody = GetComponent<Rigidbody> ();
+		steps = GetComponentInChildren<AudioSource>();
 
 		rigidBody.freezeRotation = true;
 		rigidBody.useGravity = false;
@@ -23,6 +25,7 @@ public class CharacterControls : MonoBehaviour {
 
 	void FixedUpdate () {
 		MoveCamera();
+		Sound();
 		if (grounded) {
 			Move(GetVelocity());
 
@@ -62,6 +65,18 @@ public class CharacterControls : MonoBehaviour {
 
 	void MoveCamera(){
 		//if(Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) curveMover.OnTrigger();
+	}
+	bool doSound = true;
+	void Sound(){
+		if(Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0){
+			if(!steps.isPlaying){
+				steps.Play();
+			}else{
+				//steps.Pause();
+			}
+		} else{
+			steps.Pause();
+		}
 	}
 
 	void CalculateGravity(){
