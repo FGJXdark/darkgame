@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour {
 
     int enemyCounter = 0;
 
+    public GameObject Credits;
+
     void Start () {
         spawner = GetComponent<Spawner>();
         StartCoroutine(ToggleLights());
@@ -78,6 +80,7 @@ public class GameController : MonoBehaviour {
         lightToTurnOFF.SetActive(false);
         ChangeMode();
         fader.FadeOut();
+        StartCoroutine(StartEnd());
     
     }
     void ChangeMode(){
@@ -86,7 +89,7 @@ public class GameController : MonoBehaviour {
         if (current + 1 < Modes.Length) {
             current += 1;
             Modes [current].SetActive (true);
-            StartEnd();
+            
 
         } else {
             current = 0;
@@ -94,13 +97,18 @@ public class GameController : MonoBehaviour {
         }
     }
     IEnumerator StartEnd(){
+        Debug.Log("END");
         yield return new WaitForSeconds(7f);
         fader.FadeIn();
-        yield return new WaitForSeconds(1f);
+        ShowCredits();
+        yield return new WaitForSeconds(7f);
         EndGame();
     }
+    void ShowCredits(){
+        Credits.SetActive(true);
+    }
     void EndGame(){
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
 
     }
 
